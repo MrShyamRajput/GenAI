@@ -113,3 +113,39 @@ template = PromptTemplate(
 
 prompt = template.format(topic="Django ORM")
 print(llm.invoke(prompt).content)
+
+
+1️⃣ Tokens (LangChain Context)
+What are Tokens?
+
+Tokens are the smallest text units processed by the LLM connected through LangChain.
+Input tokens → your prompt + chat history
+Output tokens → AI response
+LangChain sends both to the model
+
+Example:
+
+"I love Django"
+≈ 3–4 tokens
+
+Max Output Tokens in LangChain
+
+In LangChain, max_output_tokens limits how many tokens the model can generate.
+
+llm = ChatGoogleGenerativeAI(
+    model="gemini-pro",
+    temperature=0.3,
+    max_output_tokens=150
+)
+
+Important Behavior ⚠️
+
+Gemini does not pre-plan the response
+It generates text continuously
+When token limit is reached → response is truncated (cut)
+
+👉 Low token limit can cause:
+
+Incomplete sentences
+Broken explanations
+Poor user experience
