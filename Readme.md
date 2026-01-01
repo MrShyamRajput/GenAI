@@ -14,19 +14,12 @@ Today I started my GenAI journey using Google Gemini (FREE) and learned the basi
 🔹 Topics Covered
 
 What is Generative AI
-
 What is a Prompt
-
 Google Gemini API setup
-
 Text generation using Gemini
-
 Temperature parameter
-
 Max output tokens
-
 Prompt engineering basics
-
 PromptTemplate using LangChain
 
 ⚙️ Environment Setup
@@ -115,6 +108,9 @@ prompt = template.format(topic="Django ORM")
 print(llm.invoke(prompt).content)
 
 
+
+Day 2 – Learned BAout Tokens
+
 1️⃣ Tokens (LangChain Context)
 What are Tokens?
 
@@ -149,3 +145,102 @@ When token limit is reached → response is truncated (cut)
 Incomplete sentences
 Broken explanations
 Poor user experience
+
+
+
+
+Day 3 – Chaining in LangChain (LCEL)
+📌 Topic: Chaining & Its Types (Sequential & Parallel)
+
+Today I learned about chaining in LangChain using LCEL (LangChain Expression Language).
+Chaining is one of the core concepts used to build complex GenAI workflows.
+
+🔹 What is Chaining?
+
+Chaining means connecting multiple components like:
+PromptTemplate
+LLM (Google Gemini)
+Output Parser
+so that the output of one step becomes the input of the next step automatically.
+
+In LangChain, this is done using the pipe (|) operator, which is part of LCEL.
+
+Prompt → Model → Parser → Next Prompt → Model
+
+🔹 LCEL (LangChain Expression Language)
+LCEL is a declarative way to build chains using runnable components.
+
+Example:
+chain = prompt | llm | StrOutputParser()
+
+Here:
+prompt creates input
+llm generates output
+parser converts output to string
+
+🔹 Types of Chaining Learned Today
+1️⃣ Sequential Chaining
+
+In Sequential Chaining,
+the output of one step is passed step-by-step to the next component.
+
+Example Use Case:
+
+Generate text
+Summarize that text
+Refine the summary
+
+Flow:
+Step 1 → Step 2 → Step 3
+
+Example:
+chain = prompt1 | llm | parser | prompt2 | llm | parser
+
+
+✔ Output flows linearly
+✔ Best for multi-step reasoning tasks
+
+2️⃣ Parallel Chaining
+
+In Parallel Chaining,
+the same input is processed by multiple chains at the same time,
+and the outputs are collected in a dictionary.
+
+This is done using RunnableParallel.
+
+Example Use Case:
+
+Generate notes
+Generate quiz
+Merge both later
+
+Flow:
+           → Chain A (Notes)
+Input →
+           → Chain B (Quiz)
+
+Example:
+parallel_chain = RunnableParallel({
+    "notes": prompt1 | llm | parser,
+    "quiz":  prompt2 | llm | parser
+})
+
+
+✔ Runs chains simultaneously
+✔ Output format:
+
+{
+  "notes": "...",
+  "quiz": "..."
+}
+
+🔹 Important Learnings
+
+StrOutputParser converts LLM output into a single string
+RunnableParallel collects multiple outputs into a dictionary
+Parser does not store variables, it only transforms output
+LCEL automatically passes data between components
+Prompt variable names must match input keys exactly
+
+
+Note: You can check Code in Chain.py file
