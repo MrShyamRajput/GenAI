@@ -63,6 +63,7 @@ prompt3=PromptTemplate(
 
 parser=StrOutputParser()
 
+#This is the example of the parallel chain executing siultaneously
 parallel_chian=RunnableParallel({
     "notes": prompt1 | model1 | parser,
     "quize": prompt2 | model1 | parser
