@@ -71,7 +71,7 @@ parallel_chian=RunnableParallel({
 )
 
 prompt0=PromptTemplate(
-    template="Give me the 5 paragraph each of 5 lines  information of: Future of job market of gen ai developers in pune"
+    template="Give me the 5 paragraph each of 5 lines  information of: Future of job market of django  developers in pune"
 )
 start= prompt0 | model1 | parser
 merge_chain = prompt3 | model1 | parser
@@ -81,3 +81,6 @@ chain =start | parallel_chian | merge_chain
 
 result=chain.invoke({"text":start})
 print(result)
+
+
+#This is an examples of the sequential and parallel chians using the chianing
