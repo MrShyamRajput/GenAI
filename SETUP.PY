@@ -6,3 +6,4 @@ llm=ChatGoogleGenerativeAI(
 )
 
 print(llm.invoke("Who are you?").content)
+

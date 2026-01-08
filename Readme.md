@@ -244,3 +244,57 @@ Prompt variable names must match input keys exactly
 
 
 Note: You can check Code in Chain.py file
+
+
+Day 4 – RUNNABLES
+
+Simple definition:
+Runnable = ek unit jo input leta hai aur output deta hai
+
+Bas itna.
+LLM, Prompt, Parser, Chain
+👉 sab internally Runnable hi hote hain
+
+Real-life analogy 🧩
+Soch tu ek factory chala raha hai:
+Raw material → Machine → Polishing → Packing
+
+Har machine = Runnable
+LangChain me hum in machines ko pipe (|) se jod dete hain
+
+CORE IDEA (MOST IMPORTANT)
+
+LangChain me sab kuch Runnable hai:
+
+Component	     Runnable?
+PromptTemplate:     ✅
+LLM (Gemini)  :     ✅
+OutputParser  :     ✅
+Chain	      :     ✅
+Parallel execution:	✅
+
+
+BASIC RUNNABLE FLOW
+Flow diagram:
+Input
+ ↓
+PromptTemplate
+ ↓
+LLM
+ ↓
+OutputParser
+ ↓
+Final Output
+
+🧩 TYPES OF RUNNABLES (EXAM + INTERVIEW)
+1️⃣ RunnableSequence (default)
+Jab tu | use karta hai
+prompt | llm | parser
+->utput ek ke baad ek flow hota
+
+2️⃣ RunnableParallel (parallel execution)
+Same input se multiple outputs
+Use case:
+Notes + Quiz
+Summary + Keywords
+Explanation + Examples
