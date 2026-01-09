@@ -298,3 +298,6 @@ Use case:
 Notes + Quiz
 Summary + Keywords
 Explanation + Examples
+
+
+"NOt able to do but will continue from tommorrow
